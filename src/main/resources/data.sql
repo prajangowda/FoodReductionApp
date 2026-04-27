@@ -1,0 +1,4 @@
+--INSERT INTO user_in (email, password, role) VALUES
+--('admin@gmail.com', '123', 'ADMIN'),
+--('ngo@gmail.com', '$2a$10$REAL_HASH_HERE', 'NGO'),
+--('volunteer@gmail.com', '$2a$10$REAL_HASH_HERE', 'VOLUNTEER');
