@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/auth")
 public class LoginController {
 
     @Autowired
@@ -30,7 +30,7 @@ public class LoginController {
     }
 
     //signUp
-    @PostMapping("/signup/")
+    @PostMapping("/signup")
     public String signUpDonor(@RequestBody SingupRequest signupdto) {
         return  authService.signup(signupdto);
     }

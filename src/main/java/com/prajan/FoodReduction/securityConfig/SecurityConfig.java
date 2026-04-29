@@ -44,6 +44,13 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/auth/**", "/oauth2/**").permitAll()
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/volunteer/**").hasRole("VOLUNTEER")
+                        .requestMatchers("/ngo/**").hasRole("NGO")
+                        .anyRequest().authenticated()
+                )
                 .cors(cors -> {})
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(form -> form.disable())
@@ -66,13 +73,7 @@ public class SecurityConfig {
 
                             .successHandler(oauth2SuccessHandle);
                 })
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/volunteer/**").hasRole("VOLUNTEER")
-                        .requestMatchers("/ngo/**").hasRole("NGO")
-                        .anyRequest().authenticated()
-                );
+                ;
 
         return http.build();
     }

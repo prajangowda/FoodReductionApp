@@ -2,6 +2,7 @@ package com.prajan.FoodReduction.authService;
 
 
 import com.prajan.FoodReduction.DTO.LoginResponse;
+import com.prajan.FoodReduction.enums.Role;
 import com.prajan.FoodReduction.enums.provider;
 import com.prajan.FoodReduction.model.CustomUserDetails;
 import com.prajan.FoodReduction.model.UserIn;
@@ -43,7 +44,7 @@ public class OauthService {
             user.setProviderId(providerId);
             user.setProvider(providerType);
 
-            user.setRole(null); // important
+            user.setRole(Role.USER); // important
             user.setProfileCompleted(false);
 
             userRepo.save(user);

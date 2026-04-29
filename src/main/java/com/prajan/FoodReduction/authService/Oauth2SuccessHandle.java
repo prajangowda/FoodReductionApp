@@ -39,11 +39,9 @@ public class Oauth2SuccessHandle implements AuthenticationSuccessHandler {
        String registrationId=token.getAuthorizedClientRegistrationId();
 
         LoginResponse loginResponseDto = oauthService.handleOauthLoginRequest(oauth2User, registrationId);
+        String redirectUrl = "http://localhost:5173/oauth-success?token="
+                + loginResponseDto.getToken();
 
-        // Write JSON directly to the response
-        response.setStatus(HttpServletResponse.SC_OK);
-        response.setContentType(MediaType.APPLICATION_JSON_VALUE);
-        response.getWriter().write(objectMapper.writeValueAsString(loginResponseDto));
-        response.getWriter().flush();
+        response.sendRedirect(redirectUrl);
     }
 }

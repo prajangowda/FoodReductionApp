@@ -44,13 +44,32 @@ public class AuthService {
 
     public LoginResponse login(LoginRequest LoginDto)
     {
-        Authentication authentication=authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(LoginDto.getEmail(),LoginDto.getPassword()));
+        try {
 
-        CustomUserDetails userPrincipal = (CustomUserDetails) authentication.getPrincipal();
-        String token=jwtservice.Gettoken(userPrincipal);
-        Role role=userPrincipal.getRole();
-        return new LoginResponse(token,role);
 
+            Authentication authentication = authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(
+                            LoginDto.getEmail(),
+                            LoginDto.getPassword()
+                    )
+            );
+
+
+
+            CustomUserDetails userPrincipal =
+                    (CustomUserDetails) authentication.getPrincipal();
+
+            String token = jwtservice.Gettoken(userPrincipal);
+
+
+            Role role = userPrincipal.getRole();
+
+            return new LoginResponse(token, role);
+
+        } catch (Exception e) {
+            e.printStackTrace();   // 👈 THIS WILL SHOW REAL ERROR
+            throw e;
+        }
     }
 
     @Transactional
@@ -66,7 +85,7 @@ public class AuthService {
                 .email(signupdto.getEmail())
                 .password(passwordEncoder.encode(signupdto.getPassword()))
                 .provider(provider.EMAIL)
-                .role(null) // important
+                .role(Role.USER) // important
                 .build();
 
         userRepo.save(user);
