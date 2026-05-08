@@ -35,15 +35,5 @@ public class LoginController {
         return  authService.signup(signupdto);
     }
 
-//    //singUp for volunteer
-//    @PostMapping("/signup/volunteer")
-//    public String signUpVolunteer(@RequestBody SingupRequest signupdto) {
-//        return  authService.volunteerSignup(signupdto);
-//    }
-//
-//    //singUp for NGO
-//    @PostMapping("/signup/ngo")
-//    public String signUpngo(@RequestBody SingupRequest signupdto) {
-//        return  authService.ngoSignup(signupdto);
-//    }
+
 }

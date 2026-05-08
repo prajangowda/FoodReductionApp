@@ -28,7 +28,6 @@ public class OauthService {
         provider providerType = jwtservice.getProviderFromRegistrationId(registrationId);
 
         String providerId = jwtservice.extractProviderId(oauth2User, registrationId);
-        System.out.println(providerType);
 
         UserIn user = userRepo.findByProviderIdAndProvider(providerId, providerType).orElse(null);
 

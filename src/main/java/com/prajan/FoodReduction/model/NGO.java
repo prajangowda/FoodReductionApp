@@ -22,7 +22,6 @@ public class NGO {
     // Basic Info
     private String ngoName;
     private String contactPersonName;
-    private String phoneNumber;
 
     // Location (VERY IMPORTANT for matching food)
     private String address;

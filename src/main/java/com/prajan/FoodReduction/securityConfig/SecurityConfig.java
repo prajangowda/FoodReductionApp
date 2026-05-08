@@ -73,6 +73,12 @@ public class SecurityConfig {
 
                             .successHandler(oauth2SuccessHandle);
                 })
+                .exceptionHandling(ex -> ex
+                        .authenticationEntryPoint((request, response, authException) -> {
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            response.getWriter().write("Unauthorized");
+                        })
+                )
                 ;
 
         return http.build();

@@ -40,7 +40,8 @@ public class Oauth2SuccessHandle implements AuthenticationSuccessHandler {
 
         LoginResponse loginResponseDto = oauthService.handleOauthLoginRequest(oauth2User, registrationId);
         String redirectUrl = "http://localhost:5173/oauth-success?token="
-                + loginResponseDto.getToken();
+                + loginResponseDto.getToken()
+                + "&profileCompleted=" + loginResponseDto.getProfilecompletd();
 
         response.sendRedirect(redirectUrl);
     }

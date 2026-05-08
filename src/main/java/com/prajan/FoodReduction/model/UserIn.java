@@ -27,7 +27,7 @@ public class UserIn {
     private provider provider;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    private Role role = Role.USER;
 
     private boolean profileCompleted = false;
 
