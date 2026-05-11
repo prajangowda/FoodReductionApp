@@ -41,7 +41,7 @@ public class JWTservice {
                 .setSubject(userPrincipal.getUsername())   // use setSubject (standard)
                 .claim("role", role) // dynamic roles
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 10)) // 10 min
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 30)) // 10 min
                 .signWith(key(), SignatureAlgorithm.HS256) // explicitly define algo
                 .compact();
 

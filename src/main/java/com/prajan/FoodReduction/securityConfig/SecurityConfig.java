@@ -22,6 +22,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 import java.io.IOException;
 
@@ -35,14 +36,17 @@ public class SecurityConfig {
     private final JwtFilter jwtFilter;
     private final Oauth2SuccessHandle oauth2SuccessHandle;
 
+
     public SecurityConfig(MyUserDetailsService myUserDetailsService, JwtFilter jwtFilter, Oauth2SuccessHandle oauth2SuccessHandle) {
         this.myUserDetailsService = myUserDetailsService;
         this.jwtFilter = jwtFilter;
         this.oauth2SuccessHandle = oauth2SuccessHandle;
+
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**", "/oauth2/**").permitAll()

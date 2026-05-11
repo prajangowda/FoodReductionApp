@@ -17,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 
 @Service
 public class AuthService {
@@ -34,9 +35,11 @@ public class AuthService {
     private PasswordEncoder passwordEncoder;
 
     private final AuthenticationManager authenticationManager;
+    private final HandlerExceptionResolver handlerExceptionResolver;
 
-    public AuthService(AuthenticationManager authenticationManager) {
+    public AuthService(AuthenticationManager authenticationManager, HandlerExceptionResolver handlerExceptionResolver) {
         this.authenticationManager = authenticationManager;
+        this.handlerExceptionResolver = handlerExceptionResolver;
     }
 
     @Autowired
@@ -44,7 +47,7 @@ public class AuthService {
 
     public LoginResponse login(LoginRequest LoginDto)
     {
-        try {
+
 
 
             Authentication authentication = authenticationManager.authenticate(
@@ -66,10 +69,7 @@ public class AuthService {
 
             return new LoginResponse(token, role);
 
-        } catch (Exception e) {
-            e.printStackTrace();   // 👈 THIS WILL SHOW REAL ERROR
-            throw e;
-        }
+
     }
 
     @Transactional
