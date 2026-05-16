@@ -3,5 +3,10 @@ package com.prajan.FoodReduction.repository;
 import com.prajan.FoodReduction.model.Volunteer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
+
 public interface VolunteerRepository extends JpaRepository<Volunteer, Long> {
+
+
+    List<Volunteer> findByAvailableTrue();
 }

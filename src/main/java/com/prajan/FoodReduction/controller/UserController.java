@@ -2,6 +2,9 @@ package com.prajan.FoodReduction.controller;
 
 
 import com.prajan.FoodReduction.DTO.CompleteProfileRequest;
+import com.prajan.FoodReduction.DTO.LoginResponse;
+import com.prajan.FoodReduction.authService.JWTservice;
+import com.prajan.FoodReduction.model.CustomUserDetails;
 import com.prajan.FoodReduction.model.UserIn;
 import com.prajan.FoodReduction.repository.UserInRepository;
 import com.prajan.FoodReduction.userservice.RoleService;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
     private final RoleService roleService;
     private final UserInRepository userRepository;
+    private final JWTservice jwtservice;
 
     @PostMapping("/complete-profile")
     public ResponseEntity<?> completeProfile(
@@ -33,6 +37,8 @@ public class UserController {
 
         roleService.completeProfile(user, req);
 
-        return ResponseEntity.ok("Profile completed successfully");
+        CustomUserDetails userPrincipal =new CustomUserDetails(user);
+        String token=jwtservice.Gettoken(userPrincipal);
+        return ResponseEntity.ok(new LoginResponse(token,user.getRole(),user.isProfileCompleted()));
     }
 }

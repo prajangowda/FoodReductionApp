@@ -25,10 +25,11 @@ public class Donation {
 
     private String description;
 
-
     private LocalDateTime createdAt;
 
+    private String donorAddress ;
 
+    private String deliveryAddress;
 
     private LocalDateTime expiryTime;
 
@@ -43,4 +44,11 @@ public class Donation {
     @ManyToOne
     @JoinColumn(name = "donor_id")
     private Donor donor;
+
+    @ManyToOne
+    private NGO acceptedByNgo;
+
+    @ManyToOne
+    @JoinColumn(name = "volunteer_id")
+    private Volunteer assignedVolunteer;
 }

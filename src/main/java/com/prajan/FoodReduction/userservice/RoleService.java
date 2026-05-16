@@ -70,6 +70,7 @@ public class RoleService {
                         .address(req.getAddress())
                         .latitude(req.getLatitude())
                         .longitude(req.getLongitude())
+                        .ngophone(req.getPhone())
                         .isApproved(false)
                         .build();
 
@@ -86,7 +87,7 @@ public class RoleService {
                         .address(req.getAddress())
                         .latitude(req.getLatitude())
                         .longitude(req.getLongitude())
-                        .isActive(true)
+                        .available(true)
                         .build();
 
                 user.setVolunteer(volunteer);
@@ -94,8 +95,8 @@ public class RoleService {
         }
 
         user.setProfileCompleted(true);
-
         userRepository.save(user);
+
     }
 
     private void validateCommon(CompleteProfileRequest req) {

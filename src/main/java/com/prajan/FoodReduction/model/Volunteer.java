@@ -1,5 +1,6 @@
 package com.prajan.FoodReduction.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -18,6 +19,7 @@ public class Volunteer {
 
     @OneToOne
     @MapsId
+    @JsonIgnore
     @JoinColumn(name = "id")
     private UserIn user;
 
@@ -31,6 +33,6 @@ public class Volunteer {
     private String address;
 
     // Status
-    private boolean isActive;
+    private boolean available;
 
 }

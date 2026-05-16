@@ -1,5 +1,6 @@
 package com.prajan.FoodReduction.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,6 +17,7 @@ public class Donor {
 
     @OneToOne
     @MapsId
+    @JsonIgnore
     @JoinColumn(name = "id")
     private UserIn user;
 

@@ -1,5 +1,6 @@
 package com.prajan.FoodReduction.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.prajan.FoodReduction.enums.Role;
 import com.prajan.FoodReduction.enums.provider;
 import jakarta.persistence.*;
@@ -31,12 +32,15 @@ public class UserIn {
 
     private boolean profileCompleted = false;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Donor donor;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Volunteer volunteer;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private NGO ngo;
 

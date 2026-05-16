@@ -1,5 +1,6 @@
 package com.prajan.FoodReduction.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,13 +17,14 @@ public class NGO {
 
     @OneToOne
     @MapsId
+    @JsonIgnore
     @JoinColumn(name = "id")
     private UserIn user;
 
     // Basic Info
     private String ngoName;
     private String contactPersonName;
-
+    private String ngophone;
     // Location (VERY IMPORTANT for matching food)
     private String address;
 

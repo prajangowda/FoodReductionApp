@@ -4,6 +4,8 @@ package com.prajan.FoodReduction.controller;
 import com.prajan.FoodReduction.DTO.CreateDonationRequest;
 import com.prajan.FoodReduction.DTO.DonationResponse;
 import com.prajan.FoodReduction.userservice.DonationServiceImpl;
+
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,9 +26,12 @@ public class DonorController {
     ) {
         return donationService.createDonation(request);
     }
-
     @GetMapping("/my")
-    public List<DonationResponse> getMyDonations() {
-        return donationService.getMyDonations();
+    public List<DonationResponse> getMyDonations(
+            Authentication authentication
+    ) {
+        return donationService.getMyDonations(
+                authentication.getName()
+        );
     }
 }

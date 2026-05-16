@@ -15,11 +15,11 @@ public class LoginResponse {
 
     private Role role;
 
-    private Boolean profilecompletd;
+    private Boolean profilecompleted;
 
-    public LoginResponse(String token, Boolean profilecompletd) {
+    public LoginResponse(String token, Boolean profilecompleted) {
         this.token = token;
-        this.profilecompletd = profilecompletd;
+        this.profilecompleted = profilecompleted;
     }
 
     public LoginResponse(String token, Role role) {

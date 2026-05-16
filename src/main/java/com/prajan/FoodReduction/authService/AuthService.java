@@ -45,6 +45,9 @@ public class AuthService {
     @Autowired
     private JWTservice jwtservice;
 
+    @Autowired
+    private UserInRepository userInRepository;
+
     public LoginResponse login(LoginRequest LoginDto)
     {
 
@@ -58,6 +61,7 @@ public class AuthService {
             );
 
 
+            UserIn user =userInRepository.findByEmail(LoginDto.getEmail()).orElse(null);
 
             CustomUserDetails userPrincipal =
                     (CustomUserDetails) authentication.getPrincipal();
@@ -66,8 +70,10 @@ public class AuthService {
 
 
             Role role = userPrincipal.getRole();
+            if(role==null) role=Role.USER;
 
-            return new LoginResponse(token, role);
+
+            return new LoginResponse(token, role ,user.isProfileCompleted());
 
 
     }

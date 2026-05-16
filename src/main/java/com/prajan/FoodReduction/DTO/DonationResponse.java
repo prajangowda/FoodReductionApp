@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 public class DonationResponse {
 
+
     private Long id;
 
     private String foodName;
@@ -28,4 +29,18 @@ public class DonationResponse {
     private DonationStatus status;
 
     private LocalDateTime createdAt;
+
+    private String donorAddress;
+
+    private String donorName;
+
+    private String donorPhone;
+
+    private String deliveryAddress;
+
+    private String assignedVolunteerName;
+
+    private String ngoName;
+
+    private String ngoPhone;
 }

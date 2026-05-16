@@ -9,5 +9,5 @@ public interface DonationService {
 
     DonationResponse createDonation(CreateDonationRequest request);
 
-    List<DonationResponse> getMyDonations();
+    List<DonationResponse> getMyDonations(String email);
 }
